@@ -17,7 +17,6 @@ Features
 
 ## Repository Structure
 
-.
 ├── feserial.c       # UART0 kernel driver
 ├── Makefile         # External kernel module build rules
 └── README.md        # Project documentation

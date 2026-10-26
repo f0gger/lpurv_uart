@@ -62,7 +62,6 @@ make
 The Makefile uses the kernel build directory at:
 
 ```text
-
 /lib/modules/$(uname -r)/build
 ```
 
@@ -80,7 +79,6 @@ make clean
 The driver matches the following compatible string:
 
 ```text
-
 compatible = "rtrk,serial";
 ```
 
@@ -92,7 +90,7 @@ Note: Adding the compatible string alone does not configure the Raspberry Pi UAR
 
 Load the compiled module:
 
-``bash
+```bash
 
 sudo insmod feserial.ko
 ```

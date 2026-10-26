@@ -18,7 +18,6 @@ Features
 ## Repository Structure
 
 ```text
-.
 ├── feserial.c       # UART0 kernel driver
 ├── Makefile         # External kernel module build rules
 └── README.md        # Project documentation
@@ -55,23 +54,35 @@ Install the build tools and kernel headers appropriate for your Raspberry Pi OS 
 
 Build the module from the repository directory:
 
+```bash
+
 make
+```
 
 The Makefile uses the kernel build directory at:
 
+```text
+
 /lib/modules/$(uname -r)/build
+```
 
 If compilation succeeds, the build produces feserial.ko.
 
 To remove generated build files:
 
+```bash
+
 make clean
+```
 
 ## Device Tree Configuration
 
 The driver matches the following compatible string:
 
+```text
+
 compatible = "rtrk,serial";
+```
 
 A matching device-tree node must supply the correct memory region, interrupt, and clock resources for the UART hardware.
 
@@ -81,33 +92,51 @@ Note: Adding the compatible string alone does not configure the Raspberry Pi UAR
 
 Load the compiled module:
 
+``bash
+
 sudo insmod feserial.ko
+```
 
 Inspect kernel messages:
 
+```bash
+
 dmesg | tail -n 50
+```
 
 Check whether the device was registered:
 
+```bash
+
 ls -l /dev/uart0
+```
 
 Remove the module when finished:
 
+```bash
+
 sudo rmmod feserial
+```
 
 ## Using the Device
 ### Receiving data
 
 Read incoming serial data:
 
+```bash
+
 cat /dev/uart0
+```
 
 The driver's read operation waits for received data when the circular buffer is empty.
 Transmitting data
 
 Send a message through UART0:
 
+```bash
+
 echo "Hello from Raspberry Pi 2B" > /dev/uart0
+```
 
 The driver appends a carriage return (\r) after each newline (\n) during transmission.
 ### IOCTL Commands
